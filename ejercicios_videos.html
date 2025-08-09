@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ejercicio Quiz de Abecedario - SeñaApp</title>
+<style>
+  :root {
+  --primary: #18bc9c;
+  --primary-dark: #149f86;
+  --dark: #2c3e50;
+  --light: #ffffff;
+  --bg: #f9f9f9;
+  --error: #e74c3c;
+  --success: #27ae60;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: #333;
+        /* Centrado vertical y horizontal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+      margin: 0;
+      padding: 0;
+}
+
+header {
+  background-color: var(--dark);
+  color: var(--light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+nav {
+  display: flex;
+  gap: 1.2rem;
+}
+
+nav a {
+  color: var(--light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+}
+main {
+  width: 90vw;           /* ocupa casi toda la pantalla horizontal */
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 1rem;         /* un poco más reducido para compacto */
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow-y: auto;      /* scroll vertical si el contenido excede */
+}
+
+/* Reducir tamaño fuente de títulos y texto dentro de main */
+main h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;      /* más pequeño */
+  color: var(--dark);
+}
+
+/* Inputs más compactos */
+input[type="text"] {
+  padding: 0.6rem;
+  width: 90%;
+  max-width: 350px;
+  font-size: 0.9rem;     /* más pequeño */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+}
+
+/* Botones más pequeños */
+button {
+  margin-top: 0.8rem;
+  margin-right: 20px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;     /* más pequeño */
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Tamaño de imagen y video reducido */
+#video,
+img {
+  width: 100%;
+  max-width: 280px;    /* un poco más chico */
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 0 auto 1.2rem;
+  display: block;
+}
+
+/* Opciones y botones */
+.opciones {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;           /* menos espacio */
+  margin-bottom: 1.2rem;
+}
+
+.btn-opcion {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;  /* más pequeño */
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  min-width: 50px;    /* un poco más chico */
+}
+
+/* Mensaje y botón siguiente */
+#mensaje {
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  min-height: 24px;
+}
+
+#btnSiguiente {
+  padding: 0.6rem 1.8rem;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none;
+  user-select: none;
+  margin: 0 auto;
+  transition: background-color 0.3s ease;
+}
+
+#btnSiguiente:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+ 
+  .btn-opcion {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+    min-width: 45px;
+  }
+
+  #video,
+  img {
+    max-width: 240px;
+  }
+}
+
+ .btn-menu {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background-color: #ffdddd;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+  cursor: pointer;
+  z-index: 1000;
+  width: fit-content;
+}
+
+.btn-menu:hover {
+  background-color: #ffbbbb;
+}
+</style>
+</head>
+<body>
+
+<center>
+    <div class="contenedor-responsive">
+        <main>
+  <h1>¿Cuál es la letra que muestra el video?</h1>
+<br>
+  <div id="puntajeContador">Puntaje: 0 | Preguntas respondidas: 0</div>
+<br>
+  <video id="video" autoplay muted playsinline></video>
+
+  <div class="opciones" id="opciones"></div>
+
+  <div id="mensaje"></div>
+
+  <button id="btnSiguiente">Siguiente</button>
+  </div>
+  </main>
+  <br><br>
+      <a href="camara.html" class="btn-menu">🏠 Menú</a>
+
+</center>
+<script>
+  const abecedario = [
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+    'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's',
+    't', 'u', 'v', 'w', 'x', 'y', 'z'
+  ];
+
+  const video = document.getElementById('video');
+  const opcionesDiv = document.getElementById('opciones');
+  const mensaje = document.getElementById('mensaje');
+  const btnSiguiente = document.getElementById('btnSiguiente');
+  const puntajeContador = document.getElementById('puntajeContador');
+
+  let letraCorrecta = '';
+  let botonesOpciones = [];
+  let puntaje = 0;
+  let preguntasRespondidas = 0;
+
+  function obtenerOpciones(correcta, n = 4) {
+    let opciones = new Set();
+    opciones.add(correcta);
+
+    while (opciones.size < n) {
+      let randomLetra = abecedario[Math.floor(Math.random() * abecedario.length)];
+      opciones.add(randomLetra);
+    }
+
+    return Array.from(opciones).sort(() => Math.random() - 0.5);
+  }
+
+  function actualizarPuntaje() {
+    puntajeContador.textContent = `Puntaje: ${puntaje} | Preguntas respondidas: ${preguntasRespondidas}`;
+  }
+
+  function cargarEjercicio() {
+    mensaje.textContent = '';
+    btnSiguiente.style.display = 'none';
+    opcionesDiv.innerHTML = '';
+
+    letraCorrecta = abecedario[Math.floor(Math.random() * abecedario.length)];
+
+    video.src = `abecedario/${letraCorrecta}.mp4`;
+    video.play();
+
+    const opciones = obtenerOpciones(letraCorrecta);
+    opciones.forEach(letra => {
+      const btn = document.createElement('button');
+      btn.className = 'btn-opcion';
+      btn.textContent = letra.toUpperCase();
+      btn.onclick = () => validarRespuesta(btn, letra);
+      opcionesDiv.appendChild(btn);
+    });
+
+    botonesOpciones = Array.from(document.querySelectorAll('.btn-opcion'));
+  }
+
+  function validarRespuesta(boton, letraSeleccionada) {
+    botonesOpciones.forEach(btn => btn.disabled = true);
+    preguntasRespondidas++;
+
+    if (letraSeleccionada === letraCorrecta) {
+      boton.classList.add('correcto');
+      mensaje.textContent = '✅ ¡Correcto!';
+      puntaje += 10;
+    } else {
+      boton.classList.add('incorrecto');
+      mensaje.textContent = `❌ Incorrecto. La letra correcta es ${letraCorrecta.toUpperCase()}.`;
+      puntaje = Math.max(0, puntaje - 10);
+      botonesOpciones.find(btn => btn.textContent.toLowerCase() === letraCorrecta).classList.add('correcto');
+    }
+
+    actualizarPuntaje();
+    btnSiguiente.style.display = 'inline-block';
+  }
+
+  btnSiguiente.addEventListener('click', cargarEjercicio);
+
+  // Para que el video se reinicie automáticamente cuando termina
+  video.onended = () => {
+    video.play();
+  };
+
+  // Carga inicial
+  actualizarPuntaje();
+  cargarEjercicio();
+  function toggleMenu() {
+      document.getElementById('nav').classList.toggle('active');
+    }
+
+</script>
+
+
+</body>
+</html>

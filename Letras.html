@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SeñApp - Traductor de Señas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #00bfa6;
+      --primary-dark: #009d8a;
+      --light: #ffffff;
+      --bg: #f2f7f5;
+      --text-dark: #2c3e50;
+      --error: #e74c3c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    main {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    main h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    #mensajeError {
+      margin: 0.5rem 0;
+      color: var(--error);
+      font-size: 0.95rem;
+    }
+
+    input[type="text"] {
+      padding: 0.8rem 1rem;
+      width: 100%;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      margin-top: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #0d6efd;
+    }
+
+    button {
+      margin-top: 1.2rem;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      background-color:#0d6efd;
+
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    button:hover {
+      background-color:rgb(6, 80, 190);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    #video {
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 12px;
+      background: #000;
+    }
+
+    #letraActual {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    /* Animación */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      main {
+        padding: 1.5rem;
+      }
+      main h2 {
+        font-size: 1.5rem;
+      }
+    }
+    
+    
+    .btn-menu {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  background-color: #ffdddd;
+  color: #333;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+  cursor: pointer;
+  z-index: 1000;
+  width: fit-content;
+}
+
+.btn-menu:hover {
+  background-color: #ffbbbb;
+}
+
+  </style>
+</head>
+<body>
+
+  <main>
+    <h2>Traducí letras al Lenguaje de Señas</h2>
+    <p id="mensajeError"></p>
+    <input type="text" id="inputTexto" placeholder="Escribí una letra...">
+    <br>
+    <button onclick="traducir()">Traducir</button>
+    <p id="letraActual"></p>
+<video id="video" autoplay muted loop></video>
+  </main>
+    <a href="camara.html" class="btn-menu">🏠 Menú</a>
+
+ <script>
+  const video = document.getElementById('video');
+  const letraActual = document.getElementById('letraActual');
+  const mensajeError = document.getElementById('mensajeError');
+
+  async function traducir() {
+    const input = document.getElementById('inputTexto').value.toLowerCase().trim();
+    mensajeError.textContent = '';
+    letraActual.textContent = '';
+
+    const permitidas = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z','ch','ll'];
+
+    if (!input) {
+      mensajeError.textContent = "⚠️ Ingresá al menos una letra válida.";
+      return;
+    }
+
+    if (!permitidas.includes(input)) {
+      mensajeError.textContent = "⚠️ Letra no válida. Permitidas: A-Z, CH, LL, Ñ.";
+      return;
+    }
+
+    video.src = `abecedario/${input}.mp4`;
+    video.play(); // Asegura que se reproduzca
+
+    // No es necesario esperar a que termine si está en loop
+  }
+</script>
+
+</body>
+</html>

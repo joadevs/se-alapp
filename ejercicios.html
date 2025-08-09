@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SeñApp - Traductor de Señas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #18bc9c;
+      --dark: #2c3e50;
+      --light: #ffffff;
+      --bg: #f9f9f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--dark);
+      color: var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    .contenedor-principal {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      max-width: 900px; /* para limitar ancho */
+      width: 100%;
+    }
+      .bloque {
+      flex: 1;
+      min-width: 280px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+
+    h1 {
+      font-size: 1.6rem;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .contenedor-principal {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .bloque {
+        padding: 20px;
+      }
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--dark);
+        padding: 1rem 0;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #444;
+      }
+    }
+    .bloque a {
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .bloque a:hover {
+      background-color: #149f86;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">SeñApp</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav">
+      <a href="../home.html">Inicio</a>
+      <a href="Letras.html">Abecedario</a>
+      <a href="Letras.html">Palabras</a>
+      <a href="#">Cámara</a>
+      <a href="ejercicios.html">Ejercicios</a>
+      <a href="#">Temáticas</a>
+      <a href="#">Docentes</a>
+    </nav>
+  </header>
+<br><br><br><br><br><br><br>
+<center>
+    <div class="contenedor-principal">
+    <div class="bloque">
+      <h1>Ejercitarse con video</h1>
+      <br><br>
+      <a href="ejercicios_videos.html">Ingresar</a>
+      <br><br>
+    </div>
+    <div class="bloque">
+      <h1>Ejercitarse con img</h1>
+      <br><br><b></b>
+    <a href="ejercicios_img.html">Ingresar</a>
+    
+    </div>
+  </div>
+  </center>
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav').classList.toggle('active');
+    }
+
+    const video = document.getElementById('video');
+    const letraActual = document.getElementById('letraActual');
+    const mensajeError = document.getElementById('mensajeError');
+
+    async function traducir() {
+      const texto = document.getElementById('inputTexto').value.toLowerCase().replace(/[^a-z]/g, '');
+      mensajeError.textContent = '';
+      letraActual.textContent = '';
+
+      if (!texto) {
+        mensajeError.textContent = "⚠️ Ingresá al menos una letra válida.";
+        return;
+      }
+
+      if (texto.length !== 1) {
+        mensajeError.textContent = "⚠️ Solo podés ingresar una única letra.";
+        return;
+      }
+
+      const letra = texto;
+      letraActual.textContent = `Mostrando: ${letra.toUpperCase()}`;
+      video.src = `abecedario/${letra}.mp4`;
+
+      await esperarVideoTermine();
+      letraActual.textContent = "✅ Traducción finalizada";
+    }
+
+    function esperarVideoTermine() {
+      return new Promise(resolve => {
+        video.onended = resolve;
+      });
+    }
+  </script>
+
+</body>
+</html>

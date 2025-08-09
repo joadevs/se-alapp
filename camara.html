@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SeñaApp</title>
+  <style>
+    :root {
+      --primary: #0d6efd;
+      --background: #f4f4f4;
+      --text: #333;
+      --card-bg: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 1rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      color: var(--primary);
+      font-size: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+      /* Botón Menú */
+    .btn-menu {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #ffdddd;
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .btn-menu:hover {
+      background-color: #ffbbbb;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📱 SeñaApp</h1>
+    <p>Explorá las secciones interactivas</p>
+  </header>
+
+  <div class="grid">
+    <a href="calendario/calendario.html" class="card">
+      <div class="emoji">📆</div>
+      <h2>Calendario</h2>
+      <p>Organizá tus actividades en bucle</p>
+    </a>
+
+    <a href="Letras.html" class="card">
+      <div class="emoji">🔤</div>
+      <h2>Abecedario</h2>
+      <p>Aprendé las letras en lengua de señas</p>
+    </a>
+
+    <a href="ejercicios_img.html" class="card">
+      <div class="emoji">🖼️</div>
+      <h2>Ejercicios (Imágenes)</h2>
+      <p>Visualizá ejemplos y señales</p>
+    </a>
+
+  </div>
+  <br>
+  <div class="grid">
+
+    <a href="ejercicios_videos.html" class="card">
+      <div class="emoji">🎥</div>
+      <h2>Ejercicios (Videos)</h2>
+      <p>Videos para practicar las señas</p>
+    </a>
+
+    <a href="letras.html" class="card">
+      <div class="emoji">✍️</div>
+      <h2>Letras</h2>
+      <p>Lectoescritura y práctica visual</p>
+    </a>
+    
+    <a href="letras.html" class="card">
+      <div class="emoji">📸</div>
+      <h2>Camara</h2>
+      <p>Lectoescritura y práctica visual</p>
+    </a>
+  </div>
+<br>
+ <div class="grid">
+
+    <a href="ejercicios-video.html" class="card">
+      <div class="emoji">🧍‍♂️</div>
+      <h2>Cuerpo Humano</h2>
+      <p>Videos sobre partes del cuerpo</p>
+    </a>
+
+    <a href="letras.html" class="card">
+      <div class="emoji">🤸</div>
+      <h2>Acciones</h2>
+      <p>Descubre cómo señalar diferentes acciones</p>
+    </a>
+    
+    <a href="letras.html" class="card">
+      <div class="emoji">🏥</div>
+      <h2>Salud</h2>
+      <p>Vocabulario de señas sobre el cuidado de la salud.</p>
+    </a>
+  </div>
+  <br>
+   <div class="grid">
+
+    <a href="ejercicios-video.html" class="card">
+      <div class="emoji">🎒</div>
+      <h2>Escuela</h2>
+      <p> Videos de señas de términos escolares</p>
+    </a>
+
+    <a href="letras.html" class="card">
+      <div class="emoji">👨‍👩‍👧‍👦</div>
+      <h2>Familia</h2>
+      <p>Videos de señas sobre miembros de la familia</p>
+    </a>
+    
+    <a href="letras.html" class="card">
+      <div class="emoji">👕</div>
+      <h2>Ropa</h2>
+      <p>Videos de señas de prendas y accesorios</p>
+    </a>
+  </div>
+  <br>
+   <div class="grid">
+
+    <a href="ejercicios-video.html" class="card">
+      <div class="emoji">💻</div>
+      <h2>Tecnologia</h2>
+      <p>Videos de señas sobre dispositivos y tecnología</p>
+    </a>
+
+    <a href="letras.html" class="card">
+      <div class="emoji">👷‍♀️</div>
+      <h2>Profesiones</h2>
+      <p>Videos de señas de oficios y trabajos</p>
+    </a>
+    
+    <a href="letras.html" class="card">
+      <div class="emoji">🐶</div>
+      <h2>Animales</h2>
+      <p> Videos de señas de animales </p>
+    </a>
+  </div>
+  <br>
+   <div class="grid">
+
+    <a href="ejercicios-video.html" class="card">
+      <div class="emoji">🎨</div>
+      <h2>Colores</h2>
+      <p>Videos de señas sobre colores</p>
+    </a>
+
+    <a href="letras.html" class="card">
+      <div class="emoji">🔢</div>
+      <h2>Numeros</h2>
+      <p>Videos de señas de números</p>
+    </a>
+    
+    <a href="letras.html" class="card">
+      <div class="emoji">😊</div>
+      <h2>Sentimientos</h2>
+      <p>Videos de señas sobre emociones</p>
+    </a>
+  </div>
+</body>
+</html>

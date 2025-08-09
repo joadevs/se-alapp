@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SeñApp - Traductor de Señas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #18bc9c;
+      --dark: #2c3e50;
+      --light: #ffffff;
+      --bg: #f9f9f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--dark);
+      color: var(--light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    nav a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    main h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: var(--dark);
+    }
+
+    input[type="text"] {
+      padding: 0.8rem;
+      width: 80%;
+      max-width: 400px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #149f86;
+    }
+
+    #video {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #letraActual {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    #mensajeError {
+      margin-top: 10px;
+      color: red;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--dark);
+        padding: 1rem 0;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #444;
+      }
+    }
+   .contenedores {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .categoria {
+    background-color: #18bc9c;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+  }
+
+  .categoria:hover {
+    background-color: #149f86;
+  }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">SeñApp</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav">
+      <a href="../home.html">Inicio</a>
+      <a href="Letras.html">Abecedario</a>
+      <a href="#">Palabras</a>
+      <a href="camara2.html">Cámara</a>
+      <a href="ejercicios.html">Ejercicios</a>
+      <a href="#">Temáticas</a>
+      <a href="#">Docentes</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenedores">
+  <div class="categoria">
+    <a href="calendario/calendario.html" class="categoria">Calendario</a>
+</div>
+  <div class="categoria">Cuerpo Humano</div>
+  <div class="categoria">Acciones</div>
+  <div class="categoria">Salud</div>
+  <div class="categoria">Escuela</div>
+  <div class="categoria">Familia</div>
+  <div class="categoria">Ropa</div>
+  <div class="categoria">Tecnología</div>
+  <div class="categoria">Profesiones</div>
+  <div class="categoria">Alimentos</div>
+  <div class="categoria">Animales</div>
+  <div class="categoria">Colores</div>
+  <div class="categoria">Números</div>
+  <div class="categoria">Sentimientos</div>
+</div>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav').classList.toggle('active');
+    }
+
+  </script>
+
+</body>
+</html>
