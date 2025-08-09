@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario - Enero</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column; /* Para que el botón quede debajo */
+    }
+
+    .contenedor-mes {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 500px; /* Más chico */
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #333;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Botón Menú */
+    .btn-menu {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #ffdddd;
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .btn-menu:hover {
+      background-color: #ffbbbb;
+    }
+
+    /* Animación */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      .btn-menu {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    }
+      /* Contenedor de botones */
+    .botones-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 8px; /* Espacio entre botones */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor-mes">
+    <h1>🎉 Mayo</h1>
+    <video src="mayo.mp4" loop autoplay muted></video>
+  </div>
+
+   <div class="botones-nav">
+    <a href="abril.html" class="btn-menu">⬅ Atrás</a>
+    <a href="calendario.html" class="btn-menu">🏠 Menú</a>
+    <a href="junio.html" class="btn-menu">Siguiente ➡</a>
+  </div>
+</body>
+</html>
