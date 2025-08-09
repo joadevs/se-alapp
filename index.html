@@ -4,7 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeñApp</title>
-    <link rel="stylesheet" href="../style.css">
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+body{
+          font-family: 'Segoe UI', sans-serif;
+
+    box-sizing: border-box;
+          background-color: #f5f8fa;
+
+}
+.inicio{
+    background-color: #005ddd;
+}
+.contenedor-presentacion {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 70vh;
+    padding: 40px;
+    color: white;
+    gap: 40px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.contenedor-texto {
+    text-align: left;
+        border:4px solid white;
+border-radius: 10px;
+padding: 25px;
+    max-width: 500px;
+}
+
+.contenedor-texto h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.contenedor-texto p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-ir {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: white;
+    color: #0077ff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ir:hover {
+    background-color:#005ddd ;
+    color: white;
+    border: 1px solid  white;
+
+}
+
+.persona-saludando img {
+    width: 300px;
+
+    height: auto;
+}
+
+/* 🔽 Responsive para tablets */
+@media (max-width: 768px) {
+    .contenedor-presentacion {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .contenedor-texto {
+        text-align: center;
+    }
+
+    .contenedor-texto h1 {
+        font-size: 2rem;
+    }
+
+    .contenedor-texto p {
+        font-size: 1rem;
+    }
+
+    .persona-saludando img {
+        width: 300px;
+    }
+}
+
+/* 🔽 Responsive para celulares */
+@media (max-width: 480px) {
+    .contenedor-texto h1 {
+        font-size: 1.8rem;
+    }
+
+    .contenedor-texto p {
+        font-size: 0.95rem;
+    }
+
+    .btn-ir {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .persona-saludando img {
+        width: 250px;
+    }
+}
+.seccion-info {
+  background-color: #f5f9ff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.info-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.seccion-info h2 {
+  font-size: 2rem;
+  color: #2D9CDB;
+  margin-bottom: 20px;
+}
+
+.seccion-info p {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.btn-info {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #2D9CDB;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-info:hover {
+  background-color: #1b7bb5;
+}
+
+@media (max-width: 600px) {
+  .seccion-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .seccion-info p {
+    font-size: 1rem;
+  }
+}
+
+</style>
 </head>
 <body>
     <section class="inicio">
@@ -24,4 +190,5 @@
 </body>
 
 </html>
+
 
